@@ -59,7 +59,7 @@ class MediaOptimizeCommand extends Command
     private $projectDir;
 
     public function __construct(
-        EntityRepositoryInterface $mediaRepository,
+        EntityRepository $mediaRepository,
         OptimizerChain $optimizerChain,
         UrlGeneratorInterface $urlGenerator,
         string $projectDir
@@ -71,7 +71,7 @@ class MediaOptimizeCommand extends Command
         $this->projectDir = $projectDir;
     }
 
-    public function configure(): void
+    protected function configure(): void
     {
         $this->addOption('info')
             ->addOption(
@@ -83,7 +83,7 @@ class MediaOptimizeCommand extends Command
             );
     }
 
-    public function run(InputInterface $input, OutputInterface $output): int
+    protected function run(InputInterface $input, OutputInterface $output): int
     {
         if ($input->getOption('info')) {
             $optimizers = $this->optimizerChain->getOptimizers();
