@@ -83,7 +83,7 @@ class MediaOptimizeCommand extends Command
             );
     }
 
-    protected function run(InputInterface $input, OutputInterface $output): int
+    public function run(InputInterface $input, OutputInterface $output): int
     {
         if ($input->getOption('info')) {
             $optimizers = $this->optimizerChain->getOptimizers();
