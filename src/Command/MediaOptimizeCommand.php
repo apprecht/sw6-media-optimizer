@@ -83,7 +83,7 @@ class MediaOptimizeCommand extends Command
             );
     }
 
-    public function run(InputInterface $input, OutputInterface $output)
+    public function run(InputInterface $input, OutputInterface $output): int
     {
         if ($input->getOption('info')) {
             $optimizers = $this->optimizerChain->getOptimizers();
@@ -102,7 +102,8 @@ class MediaOptimizeCommand extends Command
             ->setRows($rows);
             $table->render();
 
-            return 0;
+            //return 0;
+            return Command::SUCCESS;
         }
         $this->batchSize = $this->getBatchSizeFromInput($input);
         $context = Context::createDefaultContext();
@@ -129,7 +130,8 @@ class MediaOptimizeCommand extends Command
             'Bytes saved: ' . ($this->sizePre - $this->sizePost) . ' (' . (round((1 - $this->sizePre / $this->sizePost) * 100, 2)) . '%)',
         ]);
 
-        return 0;
+        //return 0;
+        return Command::SUCCESS;
     }
 
     private function getBatchSizeFromInput(InputInterface $input): int
